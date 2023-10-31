@@ -7,6 +7,7 @@ vim.opt.expandtab = true -- expand tab to spaces
 
 vim.opt.autoindent = true -- copy indent from current line when starting new one
 vim.opt.smartindent = true
+vim.opt.breakindent = true
 
 vim.opt.wrap = true
 vim.opt.linebreak = true

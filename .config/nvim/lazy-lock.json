@@ -27,6 +27,7 @@
   "plenary.nvim": { "branch": "master", "commit": "50012918b2fc8357b87cff2a7f7f0446e47da174" },
   "telescope-fzf-native.nvim": { "branch": "main", "commit": "6c921ca12321edaa773e324ef64ea301a1d0da62" },
   "telescope.nvim": { "branch": "master", "commit": "54930e1abfc94409e1bb9266e752ef8379008592" },
+  "toggleterm.nvim": { "branch": "main", "commit": "faee9d60428afc7857e0927fdc18daa6c409fa64" },
   "undotree": { "branch": "master", "commit": "3ff3aa02fd3a18d7fc5be9ed3166d36c545707fe" },
   "vim-fugitive": { "branch": "master", "commit": "cbe9dfa162c178946afa689dd3f42d4ea8bf89c1" },
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
