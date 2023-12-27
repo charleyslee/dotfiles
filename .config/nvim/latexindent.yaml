@@ -544,7 +544,7 @@ modifyLineBreaks:
       blankLine: 1                      # 0/1
       verbatim: 1                       # 0/1
       filecontents: 1                   # 0/1
-      other: \\\]|\\item(?:\h|\[)|\\begin{proof}       # regex
+      other: \\\]|\\item(?:\h|\[)|\\begin{proof}|\\item       # regex
     blocksBeginWith:
       A-Z: 1                            # 0/1
       a-z: 1                            # 0/1

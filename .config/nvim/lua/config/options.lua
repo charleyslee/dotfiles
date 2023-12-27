@@ -21,3 +21,6 @@ vim.opt.scrolloff = 8
 vim.opt.signcolumn = "yes"
 
 vim.opt.updatetime = 100
+
+vim.opt.conceallevel = 1
+vim.opt.concealcursor = "nc"

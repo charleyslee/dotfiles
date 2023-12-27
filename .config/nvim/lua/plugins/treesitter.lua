@@ -7,7 +7,21 @@ return {
   build = ":TSUpdate",
   config = {
     -- A list of parser names, or "all" (the five listed parsers should always be installed)
-    ensure_installed = { "javascript", "typescript", "python", "help", "c", "lua", "vim", "vimdoc", "query" },
+    ensure_installed = {
+      "javascript",
+      "typescript",
+      "python",
+      "help",
+      "c",
+      "lua",
+      "vim",
+      "vimdoc",
+      "query",
+      "elixir",
+      "heex",
+    },
+
+    ignore_install = { "latex" }, -- VimTex handles syntax highlighting for LaTeX
 
     -- Install parsers synchronously (only applied to `ensure_installed`)
     sync_install = false,

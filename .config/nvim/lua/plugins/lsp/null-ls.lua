@@ -23,13 +23,16 @@ return {
         --  to disable file types use
         --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
         formatting.prettier, -- js/ts formatter
+        formatting.black, -- python formatter
         formatting.stylua, -- lua formatter
         diagnostics.eslint_d.with({ -- js/ts linter
           condition = function(utils)
             return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
           end,
         }),
-        formatting.clang_format, -- c/c++ formatter
+        formatting.clang_format.with({
+          extra_args = { "-style=file:/Users/charley/.config/nvim/.clang-format" }, -- use .clang-format file
+        }), -- c/c++ formatter
         formatting.latexindent.with({
           extra_args = { "-m", "-l", "/Users/charley/.config/nvim/latexindent.yaml" }, -- use custom config
         }), -- latex formatter

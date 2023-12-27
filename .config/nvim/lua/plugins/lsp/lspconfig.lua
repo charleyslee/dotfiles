@@ -140,7 +140,12 @@ return {
     lspconfig["clangd"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      cmd = {
+        "clangd",
+        "--offset-encoding=utf-16",
+      },
     })
+    vim.keymap.set("n", "<leader>i", ":ClangdSwitchSourceHeader<CR>")
 
     lspconfig["texlab"].setup({
       capabilities = capabilities,
@@ -153,6 +158,18 @@ return {
     })
 
     lspconfig["taplo"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig["dockerls"].setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig["elixirls"].setup({
+      -- cmd = { "/Users/charley/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
+      cmd = { "elixir-ls" },
       capabilities = capabilities,
       on_attach = on_attach,
     })
