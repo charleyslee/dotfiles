@@ -4,18 +4,6 @@
 # Path to your oh-my-zsh installation.
 export ZSH="$HOME/.oh-my-zsh"
 
-# Set name of the theme to load --- if set to "random", it will
-# load a random theme each time oh-my-zsh is loaded, in which case,
-# to know which specific one was loaded, run: echo $RANDOM_THEME
-# See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="robbyrussell"
-
-# Set list of themes to pick from when loading at random
-# Setting this variable when ZSH_THEME=random will cause zsh to load
-# a theme from this variable instead of looking in $ZSH/themes/
-# If set to an empty array, this variable will have no effect.
-# ZSH_THEME_RANDOM_CANDIDATES=( "robbyrussell" "agnoster" )
-
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
 
@@ -71,9 +59,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
+  # git
 	zsh-syntax-highlighting
 	zsh-autosuggestions
+  zsh-autocomplete
 )
 
 source $ZSH/oh-my-zsh.sh
@@ -106,10 +95,6 @@ source $ZSH/oh-my-zsh.sh
 
 EDITOR=nvim
 
-export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
 __conda_setup="$('/Users/charley/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
@@ -125,7 +110,6 @@ fi
 unset __conda_setup
 # <<< conda initialize <<<
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
 # Homebrew setup
 if [[ $(uname -m) == 'arm64' ]]; then
     BREWPATH=/opt/homebrew/bin
@@ -134,27 +118,10 @@ else
 fi
 export PATH=$BREWPATH:$PATH
 
-export PATH="/Library/TeX/texbin:$PATH"
-
 eval "$(starship init zsh)"
 
-# pnpm
-export PNPM_HOME="/Users/charley/Library/pnpm"
-case ":$PATH:" in
-  *":$PNPM_HOME:"*) ;;
-  *) export PATH="$PNPM_HOME:$PATH" ;;
-esac
-# pnpm end
-# bun completions
-[ -s "/Users/charley/.bun/_bun" ] && source "/Users/charley/.bun/_bun"
-
-# bun
-export BUN_INSTALL="$HOME/.bun"
-export PATH="$BUN_INSTALL/bin:$PATH"
-
-# dbus (for vimtex + zathura)
-export DBUS_SESSION_BUS_ADDRESS="unix:path=$DBUS_LAUNCHD_SESSION_BUS_SOCKET"
-
-# python
-export PATH="/Users/charley/Library/Python/3.11/bin:$PATH"
 alias config='/usr/bin/git --git-dir=/Users/charley/.cfg/ --work-tree=/Users/charley'
+alias vim='nvim'
+alias vimconf='(cd ~/.config/nvim && nvim .)'
+
+alias icat="kitten icat"
