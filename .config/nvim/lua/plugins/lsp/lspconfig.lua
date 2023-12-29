@@ -6,6 +6,7 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
     "nvim-telescope/telescope.nvim",
+    "pmizio/typescript-tools.nvim",
   },
   config = function()
     -- import lspconfig plugin
@@ -59,6 +60,19 @@ return {
 
       opts.desc = "Restart LSP"
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      -- TSTools commands
+      opts.desc = "TS Organize Imports"
+      keymap.set("n", "<leader>to", ":TSToolsOrganizeImports<CR>", opts)
+
+      opts.desc = "Go to source definition"
+      keymap.set("n", "<leader>td", ":TSToolsGoToSourceDefinition<CR>", opts)
+
+      opts.desc = "TS rename file"
+      keymap.set("n", "<leader>tr", ":TSToolsRenameFile<CR>", opts)
+
+      opts.desc = "TS file references"
+      keymap.set("n", "<leader>tf", ":TSToolsFileReferences<CR>", opts)
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
@@ -72,14 +86,24 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    -- configure html server
-    lspconfig["html"].setup({
+    require("typescript-tools").setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        tsserver_file_preferences = {
+          includeInlayParameterNameHints = "all",
+          includeCompletionsForModuleExports = true,
+          quotePreference = "auto",
+        },
+        tsserver_format_options = {
+          allowIncompleteCompletions = false,
+          allowRenameOfImportPath = true,
+        },
+      },
     })
 
-    -- configure typescript server with plugin
-    lspconfig["tsserver"].setup({
+    -- configure html server
+    lspconfig["html"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

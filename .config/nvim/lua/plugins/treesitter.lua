@@ -10,6 +10,8 @@ return {
     ensure_installed = {
       "javascript",
       "typescript",
+      "jsx",
+      "tsx",
       "python",
       "help",
       "c",
