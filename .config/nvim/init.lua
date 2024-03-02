@@ -1,5 +1,7 @@
 require("config")
 
+vim.g.python3_host_prog = "/opt/homebrew/bin/python3.11"
+
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   vim.fn.system({

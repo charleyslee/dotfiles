@@ -9,11 +9,11 @@ return {
   keys = {
     { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     { "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Git files" },
+    { "<leader>fl", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
     {
       "<leader>fs",
-      function()
-        require("telescope.builtin").grep_string({ search = vim.fn.input("Grep > ") })
-      end,
+      "<cmd>Telescope grep_string<cr>",
+      desc = "Grep string",
     },
   },
   config = function()

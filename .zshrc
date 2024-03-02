@@ -125,3 +125,12 @@ alias vim='nvim'
 alias vimconf='(cd ~/.config/nvim && nvim .)'
 
 alias icat="kitten icat"
+
+# bun completions
+[ -s "/Users/charley/.bun/_bun" ] && source "/Users/charley/.bun/_bun"
+alias sweep='npm start --prefix /Users/charley/dev/unclegpt/sweep/platform'
+alias sweep='npm start --prefix /Users/charley/dev/sweep/platform'
+alias sweep='npm start --prefix /Users/charley/dev/sweep/platform'
+alias sweep='npm start --prefix /Users/charley/dev/sweep/platform'
+alias sweep='npm start --prefix /Users/charley/dev/sweep/platform'
+alias sweep='npm start --prefix /Users/charley/dev/sweep/platform'

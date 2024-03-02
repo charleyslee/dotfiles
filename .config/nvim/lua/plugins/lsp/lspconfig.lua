@@ -65,6 +65,9 @@ return {
       opts.desc = "TS Organize Imports"
       keymap.set("n", "<leader>to", ":TSToolsOrganizeImports<CR>", opts)
 
+      opts.desc = "TS Auto Import"
+      keymap.set("n", "<leader>ti", ":TSToolsAddMissingImports<CR>", opts)
+
       opts.desc = "Go to source definition"
       keymap.set("n", "<leader>td", ":TSToolsGoToSourceDefinition<CR>", opts)
 
@@ -118,6 +121,16 @@ return {
     lspconfig["tailwindcss"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        tailwindCSS = {
+          experimental = {
+            classRegex = {
+              { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+              { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" },
+            },
+          },
+        },
+      },
     })
 
     -- configure prisma orm server
@@ -134,9 +147,20 @@ return {
     })
 
     -- configure python server
-    lspconfig["pyright"].setup({
+    lspconfig["pylsp"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
+      settings = {
+        pylsp = {
+          plugins = {
+            isort = { enabled = true },
+            rope_autoimport = { enabled = true },
+            pycodestyle = {
+              maxLineLength = 88,
+            },
+          },
+        },
+      },
     })
 
     -- configure lua server (with special settings)

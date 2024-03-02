@@ -8,6 +8,13 @@ return {
     integrations = {
       harpoon = true,
     },
+    custom_highlights = function(colors)
+      return {
+        LineNr = { fg = "#8b87a8" },
+        -- LineNrAbove = { fg = "#000000" },
+        -- LineNrBelow = { fg = "#000000" },
+      }
+    end,
   },
   config = function(_, opts)
     require("catppuccin").setup(opts)
