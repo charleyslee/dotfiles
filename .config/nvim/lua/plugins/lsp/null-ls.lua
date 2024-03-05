@@ -38,6 +38,8 @@ return {
           extra_args = { "-m", "-l", "/Users/charley/.config/nvim/latexindent.yaml" }, -- use custom config
         }), -- latex formatter
         formatting.taplo, -- toml formatter
+
+        formatting.rustfmt,
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)

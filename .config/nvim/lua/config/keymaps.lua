@@ -16,4 +16,7 @@ vim.keymap.set("i", "<A-k>", "<Esc>:m .-2<CR>==gi")
 vim.keymap.set("v", "<A-j>", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "<A-k>", ":m '<-2<CR>gv=gv")
 
+vim.keymap.set("n", "[b", ":bprev<CR>")
+vim.keymap.set("n", "]b", ":bnext<CR>")
+
 vim.keymap.set("n", "<leader>gds", ":Gvdiffsplit!<CR> <C-k> :q<CR>")
