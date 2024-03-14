@@ -24,6 +24,6 @@ alias icat="kitten icat"
 
 export PATH=$PATH:/Users/charley/.local/share/bob/nvim-bin
 
-zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh    
