@@ -3,6 +3,6 @@ return {
   "tpope/vim-surround",
   "christoomey/vim-tmux-navigator",
 
-  "HerringtonDarkholme/yats.vim", -- Better Typescript highlighting
+  -- "HerringtonDarkholme/yats.vim", -- Better Typescript highlighting
   { import = "plugins.lsp" },
 }

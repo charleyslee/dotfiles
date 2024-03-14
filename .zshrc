@@ -1,19 +1,5 @@
 EDITOR=nvim
-
-# >>> conda initialize >>>
-# !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/Users/charley/miniconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
-if [ $? -eq 0 ]; then
-    eval "$__conda_setup"
-else
-    if [ -f "/Users/charley/miniconda3/etc/profile.d/conda.sh" ]; then
-        . "/Users/charley/miniconda3/etc/profile.d/conda.sh"
-    else
-        export PATH="/Users/charley/miniconda3/bin:$PATH"
-    fi
-fi
-unset __conda_setup
-# <<< conda initialize <<<
+source ~/.zsh/zsh-defer/zsh-defer.plugin.zsh
 
 # Homebrew setup
 if [[ $(uname -m) == 'arm64' ]]; then
@@ -34,7 +20,10 @@ alias ts='source ~/.local/scripts/tmux-sessionizer'
 alias icat="kitten icat"
 
 # bun completions
-[ -s "/Users/charley/.bun/_bun" ] && source "/Users/charley/.bun/_bun"
+[ -s "/Users/charley/.bun/_bun" ] && zsh-defer source "/Users/charley/.bun/_bun"
 
 export PATH=$PATH:/Users/charley/.local/share/bob/nvim-bin
 
+zsh-defer source ~/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+zsh-defer source ~/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source ~/.zsh/zsh-autocomplete/zsh-autocomplete.plugin.zsh    

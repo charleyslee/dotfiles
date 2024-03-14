@@ -6,7 +6,6 @@ return {
     { "antosha417/nvim-lsp-file-operations", config = true },
     { "folke/neodev.nvim", opts = {} },
     "nvim-telescope/telescope.nvim",
-    "pmizio/typescript-tools.nvim",
   },
   config = function()
     -- import lspconfig plugin
@@ -76,6 +75,9 @@ return {
 
       opts.desc = "TS file references"
       keymap.set("n", "<leader>tf", ":TSToolsFileReferences<CR>", opts)
+
+      opts.desc = "TS fix"
+      keymap.set("n", "<leader>tx", ":TSToolsFixAll<CR>", opts)
     end
 
     -- used to enable autocompletion (assign to every lsp server config)
@@ -89,21 +91,21 @@ return {
       vim.fn.sign_define(hl, { text = icon, texthl = hl, numhl = "" })
     end
 
-    require("typescript-tools").setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = {
-        tsserver_file_preferences = {
-          includeInlayParameterNameHints = "all",
-          includeCompletionsForModuleExports = true,
-          quotePreference = "auto",
-        },
-        tsserver_format_options = {
-          allowIncompleteCompletions = false,
-          allowRenameOfImportPath = true,
-        },
-      },
-    })
+    -- require("typescript-tools").setup({
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   settings = {
+    --     tsserver_file_preferences = {
+    --       includeInlayParameterNameHints = "all",
+    --       includeCompletionsForModuleExports = true,
+    --       quotePreference = "auto",
+    --     },
+    --     tsserver_format_options = {
+    --       allowIncompleteCompletions = false,
+    --       allowRenameOfImportPath = true,
+    --     },
+    --   },
+    -- })
 
     -- configure html server
     lspconfig["html"].setup({
@@ -218,6 +220,11 @@ return {
     lspconfig["elixirls"].setup({
       -- cmd = { "/Users/charley/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
       cmd = { "elixir-ls" },
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
+    lspconfig["jsonls"].setup({
       capabilities = capabilities,
       on_attach = on_attach,
     })

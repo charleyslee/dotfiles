@@ -15,6 +15,11 @@ return {
       "<cmd>Telescope grep_string<cr>",
       desc = "Grep string",
     },
+    {
+      "<leader>fh",
+      "<cmd>Telescope help_tags<cr>",
+      desc = "Help tags",
+    },
   },
   config = function()
     local telescope = require("telescope")
