@@ -6,6 +6,7 @@ return {
     "nvim-treesitter/nvim-treesitter-context",
   },
   build = ":TSUpdate",
+  event = { "BufReadPre", "BufNewFile" },
   config = function()
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
@@ -50,6 +51,16 @@ return {
 
       indent = {
         enable = true,
+      },
+
+      incremental_selection = {
+        enable = true,
+        keymaps = {
+          init_selection = "<A-space>",
+          node_incremental = "<A-space>",
+          scope_incremental = false,
+          node_decremental = "<bs>",
+        },
       },
 
       modules = {},
