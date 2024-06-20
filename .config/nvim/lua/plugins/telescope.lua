@@ -35,6 +35,28 @@ return {
           },
         },
       },
+      pickers = {
+        find_files = {
+          find_command = {
+            "rg",
+            "-uu",
+            "--files",
+            "--hidden",
+            "-g",
+            "!.git/",
+            "-g",
+            "!node_modules",
+            "-g",
+            "!tmp/",
+            "-g",
+            "!build/",
+            "-g",
+            "!.next/",
+            "-g",
+            "!.turbo/",
+          },
+        },
+      },
     })
 
     telescope.load_extension("fzf")
