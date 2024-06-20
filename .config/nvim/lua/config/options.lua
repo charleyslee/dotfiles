@@ -1,6 +1,8 @@
 vim.opt.nu = true
 vim.opt.relativenumber = true
 
+vim.opt.undofile = true
+
 vim.opt.tabstop = 2 -- 2 spaces for tabs (prettier default)
 vim.opt.shiftwidth = 2 -- 2 spaces for indent width
 vim.opt.expandtab = true -- expand tab to spaces
@@ -26,3 +28,11 @@ vim.opt.conceallevel = 1
 vim.opt.concealcursor = "nc"
 
 vim.opt.syntax = "OFF"
+
+vim.api.nvim_create_autocmd("TextYankPost", {
+  desc = "Highlight when yanking (copying) text",
+  group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
+  callback = function()
+    vim.highlight.on_yank()
+  end,
+})

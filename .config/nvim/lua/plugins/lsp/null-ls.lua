@@ -22,15 +22,15 @@ return {
       sources = {
         --  to disable file types use
         --  "formatting.prettier.with({disabled_filetypes: {}})" (see null-ls docs)
-        formatting.prettierd, -- js/ts formatter
+        -- formatting.prettierd, -- js/ts formatter
         formatting.black, -- python formatter
         formatting.stylua, -- lua formatter
         formatting.isort, -- python import formatter
-        diagnostics.eslint_d.with({ -- js/ts linter
-          condition = function(utils)
-            return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
-          end,
-        }),
+        -- diagnostics.eslint_d.with({ -- js/ts linter
+        --   condition = function(utils)
+        --     return utils.root_has_file({ ".eslintrc.js", ".eslintrc.cjs" }) -- only enable if root has .eslintrc.js or .eslintrc.cjs
+        --   end,
+        -- }),
         formatting.clang_format.with({
           extra_args = { "-style=file:/Users/charley/.config/nvim/.clang-format" }, -- use .clang-format file
         }), -- c/c++ formatter
@@ -40,6 +40,8 @@ return {
         formatting.taplo, -- toml formatter
 
         formatting.rustfmt,
+        diagnostics.pylint,
+        -- diagnostics.ruff,
       },
       -- configure format on save
       on_attach = function(current_client, bufnr)
