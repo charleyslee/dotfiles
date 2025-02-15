@@ -1,0 +1,16 @@
+background-opacity = 0.92
+theme = catppuccin-macchiato
+
+macos-titlebar-style = hidden
+
+window-height = 180
+window-width = 400
+window-padding-x = 6
+window-padding-y = 6,2
+
+font-family             = JetBrainsMono Nerd Font Mono
+font-family-bold        = JetBrainsMono Nerd Font Mono Bold
+font-family-italic      = JetBrainsMono Nerd Font Mono Italic
+font-family-bold-italic = JetBrainsMono Nerd Font Mono Bold Italic
+
+font-size = 14
