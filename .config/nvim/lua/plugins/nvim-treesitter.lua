@@ -4,13 +4,30 @@ return {
   dependencies = {
     "nvim-treesitter/nvim-treesitter-textobjects",
     "nvim-treesitter/nvim-treesitter-context",
+    "rescript-lang/tree-sitter-rescript",
   },
   build = ":TSUpdate",
   event = { "BufReadPre", "BufNewFile" },
+
+  opts = function() -- this is needed so you won't override your default nvim-treesitter configuration
+    local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
+    parser_config.rescript = {
+      install_info = {
+        url = "https://github.com/rescript-lang/tree-sitter-rescript",
+        branch = "main",
+        files = { "src/parser.c", "src/scanner.c" },
+        generate_requires_npm = false,
+        requires_generate_from_grammar = true,
+        use_makefile = true, -- macOS specific instruction
+      },
+    }
+  end,
+
   config = function()
     require("nvim-treesitter.configs").setup({
       -- A list of parser names, or "all" (the five listed parsers should always be installed)
       ensure_installed = {
+        "elixir",
         "javascript",
         "typescript",
         "tsx",
@@ -65,5 +82,7 @@ return {
 
       modules = {},
     })
+
+    vim.treesitter.language.register("markdown", "mdx")
   end,
 }

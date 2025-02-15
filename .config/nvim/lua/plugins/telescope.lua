@@ -7,11 +7,11 @@ return {
     "nvim-tree/nvim-web-devicons",
   },
   keys = {
-    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Find files" },
+    { "<leader>sf", "<cmd>Telescope find_files<cr>", desc = "Find files" },
     { "<C-p>", "<cmd>Telescope git_files<cr>", desc = "Git files" },
     -- { "<leader>fl", "<cmd>Telescope live_grep<cr>", desc = "Live grep" },
     {
-      "<leader>fh",
+      "<leader>sh",
       "<cmd>Telescope help_tags<cr>",
       desc = "Help tags",
     },
@@ -46,9 +46,19 @@ return {
             "-g",
             "!build/",
             "-g",
+            "!dist/",
+            "-g",
             "!.next/",
             "-g",
             "!.turbo/",
+            "-g",
+            "!.venv/",
+            "-g",
+            "!deps/",
+            "-g",
+            "!_build/",
+            "-g",
+            "!.elixir_ls/",
           },
         },
       },
@@ -57,16 +67,16 @@ return {
     telescope.load_extension("fzf")
 
     local builtin = require("telescope.builtin")
-    vim.keymap.set("n", "<leader>fh", builtin.help_tags, { desc = "[S]earch [H]elp" })
-    vim.keymap.set("n", "<leader>fk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
-    vim.keymap.set("n", "<leader>ft", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
-    vim.keymap.set("n", "<leader>fw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-    vim.keymap.set("n", "<leader>fl", function()
+    vim.keymap.set("n", "<leader>sh", builtin.help_tags, { desc = "[S]earch [H]elp" })
+    vim.keymap.set("n", "<leader>sk", builtin.keymaps, { desc = "[S]earch [K]eymaps" })
+    vim.keymap.set("n", "<leader>st", builtin.builtin, { desc = "[S]earch [S]elect Telescope" })
+    vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
+    vim.keymap.set("n", "<leader>sl", function()
       builtin.live_grep({ debounce = 150 })
     end, { desc = "[S]earch by [G]rep" })
-    vim.keymap.set("n", "<leader>fd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
-    vim.keymap.set("n", "<leader>fr", builtin.resume, { desc = "[S]earch [R]esume" })
-    vim.keymap.set("n", "<leader>f.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
+    vim.keymap.set("n", "<leader>sd", builtin.diagnostics, { desc = "[S]earch [D]iagnostics" })
+    vim.keymap.set("n", "<leader>sr", builtin.resume, { desc = "[S]earch [R]esume" })
+    vim.keymap.set("n", "<leader>s.", builtin.oldfiles, { desc = '[S]earch Recent Files ("." for repeat)' })
     vim.keymap.set("n", "<leader><leader>", builtin.buffers, { desc = "[ ] Find existing buffers" })
 
     -- Slightly advanced example of overriding default behavior and theme
@@ -80,7 +90,7 @@ return {
 
     -- It's also possible to pass additional configuration options.
     --  See `:help telescope.builtin.live_grep()` for information about particular keys
-    vim.keymap.set("n", "<leader>f/", function()
+    vim.keymap.set("n", "<leader>s/", function()
       builtin.live_grep({
         grep_open_files = true,
         prompt_title = "Live Grep in Open Files",
@@ -88,7 +98,7 @@ return {
     end, { desc = "[S]earch [/] in Open Files" })
 
     -- Shortcut for searching your Neovim configuration files
-    vim.keymap.set("n", "<leader>fn", function()
+    vim.keymap.set("n", "<leader>sn", function()
       builtin.find_files({ cwd = vim.fn.stdpath("config") })
     end, { desc = "[S]earch [N]eovim files" })
   end,

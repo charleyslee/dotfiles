@@ -3,7 +3,6 @@ return {
   config = function()
     local vtsls = require("vtsls")
 
-    vim.keymap.set("n", "<leader>to", vtsls.commands.sort_imports)
     vim.keymap.set("n", "<leader>tu", vtsls.commands.remove_unused_imports)
 
     vim.keymap.set("n", "<leader>ti", vtsls.commands.add_missing_imports)

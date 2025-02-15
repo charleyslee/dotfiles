@@ -6,6 +6,7 @@ return {
     "folke/trouble.nvim",
     "nvim-telescope/telescope.nvim",
   },
+  enabled = false,
   event = "VeryLazy",
   cond = function()
     return vim.fn.executable("op") == 1

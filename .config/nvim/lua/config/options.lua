@@ -29,10 +29,22 @@ vim.opt.concealcursor = "nc"
 
 vim.opt.syntax = "OFF"
 
+vim.api.nvim_command("packadd cfilter")
+
 vim.api.nvim_create_autocmd("TextYankPost", {
   desc = "Highlight when yanking (copying) text",
   group = vim.api.nvim_create_augroup("kickstart-highlight-yank", { clear = true }),
   callback = function()
     vim.highlight.on_yank()
   end,
+})
+
+vim.filetype.add({
+  pattern = {
+    ["^%.?env%.?[a-z]$"] = "sh",
+    [".env.*"] = "sh",
+  },
+  extension = {
+    mdx = "mdx",
+  },
 })
