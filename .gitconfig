@@ -1,0 +1,17 @@
+[user]
+	email = charleylee42@gmail.com
+	signingkey = ~/.ssh/id_ed25519.pub
+[init]
+	defaultBranch = main
+[color]
+	ui = auto
+[pull]
+	rebase = false
+[core]
+	excludesfile = ~/.gitignore_global
+[push]
+	autoSetupRemote = true
+[gpg]
+	format = ssh
+[rebase]
+	updateRefs = true
