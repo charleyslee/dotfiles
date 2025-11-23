@@ -4,7 +4,6 @@ return {
   dependencies = {
     "hrsh7th/cmp-nvim-lsp",
     { "antosha417/nvim-lsp-file-operations", config = true },
-    { "folke/neodev.nvim", opts = {} },
     "nvim-telescope/telescope.nvim",
   },
   config = function()
@@ -112,13 +111,13 @@ return {
     -- })
 
     -- configure html server
-    lspconfig["html"].setup({
+    vim.lsp.config("html", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     -- configure css server
-    lspconfig["cssls"].setup({
+    vim.lsp.config("cssls", {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = {
@@ -129,7 +128,7 @@ return {
     })
 
     -- configure tailwindcss server
-    lspconfig["tailwindcss"].setup({
+    vim.lsp.config("tailwindcss", {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = {
@@ -145,39 +144,12 @@ return {
     })
 
     -- configure prisma orm server
-    lspconfig["prismals"].setup({
+    vim.lsp.config("prismals", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    -- configure emmet language server
-    lspconfig["emmet_ls"].setup({
-      capabilities = capabilities,
-      on_attach = on_attach,
-      filetypes = {
-        "html",
-        "typescriptreact",
-        "javascriptreact",
-        "css",
-        "sass",
-        "scss",
-        "less",
-        "svelte",
-        "rescript",
-        "heex",
-        "elixir",
-      },
-      settings = {
-        emmet = {
-          includeLanguages = {
-            phoenix_heex = "html",
-            elixir = "html",
-          },
-        },
-      },
-    })
-
-    -- lspconfig["pyright"].setup({
+    -- vim.lsp.config("pyright", {
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   settings = {
@@ -188,9 +160,10 @@ return {
     --     },
     --   },
     -- })
+    vim.lsp.enable("pyright", false)
 
     -- configure python server
-    -- lspconfig["pylsp"].setup({
+    -- vim.lsp.config("pylsp", {
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   settings = {
@@ -207,7 +180,7 @@ return {
     -- })
 
     -- configure lua server (with special settings)
-    lspconfig["lua_ls"].setup({
+    vim.lsp.config("lua_ls", {
       capabilities = capabilities,
       on_attach = on_attach,
       settings = { -- custom settings for lua
@@ -228,7 +201,7 @@ return {
     })
 
     -- configure c server
-    lspconfig["clangd"].setup({
+    vim.lsp.config("clangd", {
       capabilities = capabilities,
       on_attach = on_attach,
       cmd = {
@@ -238,69 +211,79 @@ return {
     })
     vim.keymap.set("n", "<leader>i", ":ClangdSwitchSourceHeader<CR>")
 
-    lspconfig["texlab"].setup({
+    vim.lsp.config("texlab", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig["yamlls"].setup({
+    vim.lsp.config("yamlls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig["taplo"].setup({
+    vim.lsp.config("taplo", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig["dockerls"].setup({
+    vim.lsp.config("dockerls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig["docker_compose_language_service"].setup({
+    vim.lsp.config("docker_compose_language_service", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    -- lspconfig["elixirls"].setup({
-    --   -- cmd = { "/Users/charley/.local/share/nvim/mason/packages/elixir-ls/language_server.sh" },
-    --   cmd = { "elixir-ls" },
-    --   capabilities = capabilities,
-    --   on_attach = on_attach,
-    --   settings = {
-    --     elixirLS = {
-    --       autoBuild = true,
-    --       dialyzerEnabled = true,
-    --       suggestSpecs = true,
-    --     },
-    --   },
-    -- })
+    vim.lsp.config("expert", {
+      cmd = { "/Users/charley/.local/share/nvim/mason/bin/expert_darwin_arm64" },
+      capabilities = capabilities,
+      on_attach = on_attach,
+      root_markers = { "mix.exs", ".git" },
+      filetypes = { "elixir", "eelixir", "heex" },
+    })
 
-    -- lspconfig["lexical"].setup({
+    vim.lsp.enable("expert")
+
+    vim.lsp.config("elixirls", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        elixirLS = {
+          autoBuild = true,
+          dialyzerEnabled = true,
+          suggestSpecs = true,
+        },
+      },
+    })
+
+    vim.lsp.enable("elixirls", false)
+
+    -- vim.lsp.config("lexical", {
     --   cmd = { "lexical" },
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     -- })
 
-    lspconfig["nextls"].setup({
-      cmd = { "nextls", "--stdio" },
-      capabilities = capabilities,
-      on_attach = on_attach,
-      init_options = {
-        experimental = {
-          completions = { enable = true },
-        },
-      },
-    })
+    -- vim.lsp.config("nextls", {
+    --   cmd = { "nextls", "--stdio" },
+    --   capabilities = capabilities,
+    --   on_attach = on_attach,
+    --   init_options = {
+    --     experimental = {
+    --       completions = { enable = true },
+    --     },
+    --   },
+    -- })
 
-    lspconfig["jsonls"].setup({
+    vim.lsp.config("jsonls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
     require("lspconfig.configs").vtsls = require("vtsls").lspconfig
-    lspconfig["vtsls"].setup({
+    vim.lsp.config("vtsls", {
       capabilities = capabilities,
       filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
       on_attach = on_attach,
@@ -322,7 +305,11 @@ return {
       },
     })
 
-    lspconfig["gopls"].setup({
+    vim.lsp.enable("tsgo", false)
+
+    vim.lsp.enable("ts_ls", false)
+
+    vim.lsp.config("gopls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
@@ -415,21 +402,22 @@ return {
       }
     end
 
-    lspconfig["delance"].setup({
+    vim.lsp.config("delance", {
       capabilities = capabilities,
       on_attach = function(client, bufnr)
         on_attach(client, bufnr)
         if client.server_capabilities.inlayHintProvider then
-          print("Inlay")
           vim.g.inlay_hints_visible = true
           vim.lsp.inlay_hint.enable(true)
-        else
-          print("no inlay hints available")
         end
       end,
     })
 
-    -- lspconfig["graphql"].setup({
+    vim.lsp.enable("delance", false)
+
+    vim.lsp.enable("ty")
+
+    -- vim.lsp.config("graphql", {
     --   capabilities = capabilities,
     --   on_attach = on_attach,
     --   filetypes = { "graphql", "typescriptreact", "javascriptreact", "typescript", "javascript" },
@@ -495,18 +483,18 @@ return {
       }
     end
 
-    lspconfig.rescript_relay_lsp.setup({
+    vim.lsp.config("rescript_relay_lsp", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.relay_lsp.setup({
+    vim.lsp.config("relay_lsp", {
       -- (default: false) Whether or not we should automatically start
       -- the Relay Compiler in watch mode when you open a project
       auto_start_compiler = false,
       cmd = { "relay-compiler", "lsp" },
 
-      root_dir = lspconfig.util.root_pattern("relay.config.*"),
+      root_markers = { "relay.config.js" },
       filetypes = { "javascript", "javascriptreact", "typescript", "typescriptreact" },
 
       -- (default: null) Path to a relay config relative to the
@@ -516,12 +504,14 @@ return {
       -- path_to_config = "./platform/relay.config.json",
     })
 
-    lspconfig.jdtls.setup({
+    vim.lsp.enable("relay_lsp")
+
+    vim.lsp.config("jdtls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.rescriptls.setup({
+    vim.lsp.config("rescriptls", {
       capabilities = capabilities,
       on_attach = on_attach,
       -- settings = {
@@ -532,24 +522,69 @@ return {
       -- },
     })
 
-    lspconfig.eslint.setup({
+    vim.lsp.config("eslint", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.astro.setup({
+    vim.lsp.enable("biome")
+
+    vim.lsp.config("astro", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.lemminx.setup({
+    vim.lsp.config("lemminx", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
 
-    lspconfig.terraformls.setup({
+    vim.lsp.config("terraformls", {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+
+    vim.lsp.config("rust_analyzer", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      settings = {
+        ["rust-analyzer"] = {
+          diagnostics = {
+            enable = false,
+          },
+        },
+      },
+    })
+
+    -- configure emmet language server
+    vim.lsp.config("emmet_ls", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+      filetypes = {
+        "html",
+        "typescriptreact",
+        "javascriptreact",
+        "css",
+        "sass",
+        "scss",
+        "less",
+        "svelte",
+        "rescript",
+        "heex",
+        "elixir",
+      },
+      settings = {
+        emmet = {
+          includeLanguages = {
+            phoenix_heex = "html",
+            elixir = "html",
+          },
+        },
+      },
+    })
+
+    vim.lsp.enable("copilot", false)
+
+    vim.lsp.enable("nushell")
   end,
 }

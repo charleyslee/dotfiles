@@ -1,13 +1,13 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$python$username$hostname$directory$git_branch$character'
+format = '$python$username$hostname$directory$aws$git_branch$character'
 
 add_newline = false
 
 [character]
-success_symbol = '[->](bold green)'
-error_symbol = '[->](bold red)'
+success_symbol = '[➜](bold green)'
+error_symbol = '[➜](bold red)'
 
 [line_break]
 disabled = true
@@ -17,3 +17,6 @@ symbol = " "
 
 [python]
 format = "[(\\($virtualenv\\) )]($style)"
+
+[aws]
+symbol = "󰅟 "

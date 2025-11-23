@@ -2,23 +2,34 @@ return {
   "yetone/avante.nvim",
   event = "VeryLazy",
   lazy = false,
-  enabled = true,
+  enabled = false,
   version = false, -- set this if you want to always pull the latest change
+  ---@class avante.Config
   opts = {
-    provider = "copilot", -- Recommend using Claude
-    auto_suggestions_provider = "claude", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
+    debug = true,
+    ---@type avante.ProviderName
+    provider = "claude", -- Recommend using Claude
+    -- auto_suggestions_provider = "copilot", -- Since auto-suggestions are a high-frequency operation and therefore expensive, it is recommended to specify an inexpensive provider or even a free provider: copilot
     claude = {
-      endpoint = "https://api.anthropic.com",
-      model = "claude-3-5-sonnet-20240620",
-      temperature = 0,
-      max_tokens = 4096,
+      model = "claude-3-7-sonnet-latest",
+      temperature = 1,
+      max_tokens = 16384,
+      -- thinking = {
+      --   type = "enabled",
+      --   budget_tokens = 4096,
+      -- },
     },
+    use_cwd_as_project_root = true,
     behaviour = {
-      auto_suggestions = true, -- Experimental stage
+      auto_suggestions = false, -- Experimental stage
       auto_set_highlight_group = true,
       auto_set_keymaps = true,
       auto_apply_diff_after_generation = false,
       support_paste_from_clipboard = false,
+      minimize_diff = true, -- Whether to remove unchanged lines when applying a code block
+      enable_token_counting = true, -- Whether to enable token counting. Default to true.
+      enable_cursor_planning_mode = false, -- Whether to enable Cursor Planning Mode. Default to false.
+      enable_claude_text_editor_tool_mode = true, -- Whether to enable Claude Text Editor Tool Mode.
     },
     mappings = {
       --- @class AvanteConflictMappings
@@ -31,12 +42,12 @@ return {
         next = "]x",
         prev = "[x",
       },
-      suggestion = {
-        accept = "<M-l>",
-        next = "<M-]>",
-        prev = "<M-[>",
-        dismiss = "<C-]>",
-      },
+      -- suggestion = {
+      -- accept = "<M-l>",
+      -- next = "<M-]>",
+      -- prev = "<M-[>",
+      -- dismiss = "<C-]>",
+      -- },
       jump = {
         next = "]]",
         prev = "[[",
@@ -110,4 +121,17 @@ return {
       ft = { "markdown", "Avante" },
     },
   },
+
+  -- other config
+  -- The system_prompt type supports both a string and a function that returns a string. Using a function here allows dynamically updating the prompt with mcphub
+  system_prompt = function()
+    local hub = require("mcphub").get_hub_instance()
+    return hub:get_active_servers_prompt()
+  end,
+  -- -- The custom_tools type supports both a list and a function that returns a list. Using a function here prevents requiring mcphub before it's loaded
+  custom_tools = function()
+    return {
+      require("mcphub.extensions.avante").mcp_tool(),
+    }
+  end,
 }

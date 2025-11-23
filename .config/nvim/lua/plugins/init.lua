@@ -1,7 +1,7 @@
 return {
   "tpope/vim-fugitive",
   "tpope/vim-surround",
-  "christoomey/vim-tmux-navigator",
+  "tpope/vim-abolish",
 
   { import = "plugins.lsp" },
 }

@@ -1,6 +1,7 @@
 return {
   "zbirenbaum/copilot.lua",
   event = "InsertEnter",
+  enabled = false,
   opts = {
     panel = {
       enabled = true,
@@ -23,7 +24,7 @@ return {
       hide_during_completion = true,
       debounce = 75,
       keymap = {
-        accept = "<Tab>",
+        accept = "<M-l>",
         accept_word = false,
         accept_line = false,
         next = "<M-]>",

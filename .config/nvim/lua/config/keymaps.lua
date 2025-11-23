@@ -23,3 +23,10 @@ vim.keymap.set("n", "[b", ":bprev<CR>")
 vim.keymap.set("n", "]b", ":bnext<CR>")
 
 vim.keymap.set("n", "<leader>gds", ":Gvdiffsplit!<CR> <C-k> :q<CR>")
+
+vim.keymap.set("t", "<esc><esc>", "<C-\\><C-n>")
+
+vim.keymap.set({ "n", "i" }, "<c-a-up>", "<c-w>+")
+vim.keymap.set({ "n", "i" }, "<c-a-down>", "<c-w>-")
+vim.keymap.set({ "n", "i" }, "<c-a-left>", "<c-w><lt>")
+vim.keymap.set({ "n", "i" }, "<c-a-right>", "<c-w>>")

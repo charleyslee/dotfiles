@@ -6,12 +6,16 @@
 [color]
 	ui = auto
 [pull]
-	rebase = false
+	rebase = true
 [core]
 	excludesfile = ~/.gitignore_global
 [push]
 	autoSetupRemote = true
 [gpg]
 	format = ssh
+[merge]
+  tool = nvimdiff
 [rebase]
 	updateRefs = true
+[rerere]
+	enabled = true
