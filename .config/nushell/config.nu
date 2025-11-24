@@ -39,15 +39,31 @@ path add ($env.CARGO_HOME | path join "bin")
 # bob (neovim)
 path add "~/.local/share/bob/nvim-bin"
 
+# fnm (node)
+path add ($env.HOME | path join ".local/state/fnm_multishells/82230_1763954763762/bin")
+$env.FNM_MULTISHELL_PATH = "/Users/charley/.local/state/fnm_multishells/82230_1763954763762"
+$env.FNM_VERSION_FILE_STRATEGY = "local"
+$env.FNM_DIR = "/Users/charley/.local/share/fnm"
+$env.FNM_LOGLEVEL = "info"
+$env.FNM_NODE_DIST_MIRROR = "https://nodejs.org/dist"
+$env.FNM_COREPACK_ENABLED = "false"
+$env.FNM_RESOLVE_ENGINES = "true"
+$env.FNM_ARCH = "arm64"
+
 # Bun
 $env.BUN_INSTALL = $env.HOME | path join ".bun"
 path add ($env.BUN_INSTALL | path join "bin")
+
+# pnpm
+$env.PNPM_HOME = $env.HOME | path join "Library" "pnpm"
+path add $env.PNPM_HOME
 
 ##############################################
 # Configurations
 ##############################################
 $env.EDITOR = "nvim"
 $env.config.buffer_editor = "nvim"
+$env.config.edit_mode = "vi"
 
 ##############################################
 # Commands
@@ -70,3 +86,41 @@ alias conf = /usr/bin/git --git-dir=($env.HOME | path join ".cfg") --work-tree=(
 # Starship
 mkdir ($nu.data-dir | path join "vendor/autoload")
 starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.nu")
+
+# Custom completion function for gt command
+def "nu-complete gt" [context: string, position: int] {
+    let spans = ($context | split words)
+    # Calculate current word index (0-based, like bash/zsh COMP_CWORD)
+    let comp_cword = (($spans | length) - 1 | into string)
+    
+    try {
+        # Set environment variables that yargs expects
+        with-env {
+            COMP_CWORD: $comp_cword
+            COMP_LINE: $context
+            COMP_POINT: ($position | into string)
+        } {
+            # Call gt with the command line arguments
+            ^gt --get-yargs-completions ...$spans
+            | lines
+            | where { |line| ($line | is-not-empty) }
+            | each { |line|
+                # Parse yargs format: "value:description"
+                if ($line | str contains ":") {
+                    let parts = ($line | split column ":" value description)
+                    { value: $parts.value.0, description: $parts.description.0 }
+                } else {
+                    { value: $line }
+                }
+            }
+        }
+    } catch {
+        # Return empty list on error (falls back to file completion)
+        []
+    }
+}
+
+# Define the gt extern with completion
+export extern gt [
+    ...args: string@"nu-complete gt"
+]
