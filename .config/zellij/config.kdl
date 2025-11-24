@@ -153,9 +153,6 @@ keybinds clear-defaults=true {
         bind "Shift Super down" { MoveFocus "down"; }
         bind "Shift Super up" { MoveFocus "up"; }
         bind "Shift Super right" { MoveFocusOrTab "right"; }
-        bind "Shift Super +" { Resize "Increase"; }
-        bind "Shift Super -" { Resize "Decrease"; }
-        bind "Shift Super =" { Resize "Increase"; }
         bind "Shift Super [" { PreviousSwapLayout; }
         bind "Shift Super ]" { NextSwapLayout; }
         bind "Shift Super f" { ToggleFloatingPanes; }
