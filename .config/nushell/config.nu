@@ -73,7 +73,7 @@ $env.config.edit_mode = "vi"
 # Commands
 ##############################################
 
-def vimconf [] { cd ~/.config; nvim . }
+# def vimconf [] { cd ~/.config; nvim . }
 
 ##############################################
 # Aliases
