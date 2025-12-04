@@ -12,6 +12,7 @@ return {
       typescriptreact = { "prettierd", "biome-check" },
       css = { "biome-check" },
       json = { "biome" },
+      jsonc = { "biome" },
       mdx = { "prettierd", "injected" },
       markdown = { "prettierd", "injected" },
       graphql = { "biome" },

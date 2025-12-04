@@ -10,6 +10,7 @@
   "cmp_luasnip": { "branch": "master", "commit": "98d9cb5c2c38532bd9bdb481067b20fea8f32e90" },
   "conform.nvim": { "branch": "master", "commit": "9fd3d5e0b689ec1bf400c53cbbec72c6fdf24081" },
   "copilot.lua": { "branch": "master", "commit": "30321e33b03cb924fdcd6a806a0dc6fa0b0eafb9" },
+  "csvview.nvim": { "branch": "main", "commit": "688bcc7437b577de000f71a2d406271c79e2a545" },
   "diagram.nvim": { "branch": "master", "commit": "99f0415ac157d69e7208bc93504fb70d180d6b44" },
   "dressing.nvim": { "branch": "master", "commit": "2d7c2db2507fa3c4956142ee607431ddb2828639" },
   "feline.nvim": { "branch": "main", "commit": "c97c17dc56ca3cf2b9b9192c3447fc59347e8c0d" },
@@ -19,7 +20,7 @@
   "hererocks": { "branch": "master", "commit": "160228946bed9998f5e3b168bd0b66ba2690f8f3" },
   "image.nvim": { "branch": "master", "commit": "446a8a5cc7a3eae3185ee0c697732c32a5547a0b" },
   "lazy.nvim": { "branch": "main", "commit": "db067881fff0fd4be8c00e5bde7492e0e1c77a2f" },
-  "lazydev.nvim": { "branch": "main", "commit": "01bc2aacd51cf9021eb19d048e70ce3dd09f7f93" },
+  "lazydev.nvim": { "branch": "main", "commit": "5231c62aa83c2f8dc8e7ba957aa77098cda1257d" },
   "lspkind.nvim": { "branch": "master", "commit": "3ddd1b4edefa425fda5a9f95a4f25578727c0bb3" },
   "lualine.nvim": { "branch": "master", "commit": "3946f0122255bc377d14a59b27b609fb3ab25768" },
   "mason-lspconfig.nvim": { "branch": "main", "commit": "1d77bd86e1c3eaa777010c95dad455b83823f247" },
@@ -59,6 +60,5 @@
   "vim-surround": { "branch": "master", "commit": "3d188ed2113431cf8dac77be61b842acb64433d9" },
   "vim-tmux-navigator": { "branch": "master", "commit": "c45243dc1f32ac6bcf6068e5300f3b2b237e576a" },
   "vimtex": { "branch": "master", "commit": "be9deac3a23eeb145ccf11dd09080795838496ce" },
-  "which-key.nvim": { "branch": "main", "commit": "b4177e3eaf15fe5eb8357ebac2286d488be1ed00" },
-  "zellij-nav.nvim": { "branch": "main", "commit": "91cc2a642d8927ebde50ced5bf71ba470a0fc116" }
+  "which-key.nvim": { "branch": "main", "commit": "b4177e3eaf15fe5eb8357ebac2286d488be1ed00" }
 }
