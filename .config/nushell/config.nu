@@ -26,6 +26,17 @@ const NU_LIB_DIRS = [
   $nu.default-config-dir
 ]
 
+$env.config.keybindings = ($env.config.keybindings | append {
+    name: "backslash_continuation"
+    modifier: "none"
+    keycode: "enter"
+    mode: ["emacs", "vi_insert", "vi_normal"]
+    event: {
+        send: executehostcommand
+        cmd: 'let cmd = (commandline | str replace --all --regex "\\\\\\s*\n\\s*" " "); commandline edit --replace $cmd; commandline --accept'
+    }
+})
+
 ##############################################
 # Environment / PATH configuration
 ##############################################
@@ -61,6 +72,12 @@ path add ($env.BUN_INSTALL | path join "bin")
 # pnpm
 $env.PNPM_HOME = $env.HOME | path join "Library" "pnpm"
 path add $env.PNPM_HOME
+
+# OpenCode
+path add ($env.HOME | path join ".opencode/bin")
+
+# Google Cloud CLI
+path add ($env.HOME | path join "google-cloud-sdk/bin")
 
 ##############################################
 # Configurations

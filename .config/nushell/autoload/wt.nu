@@ -178,7 +178,7 @@ export def --env "wt new" [
         git worktree add $worktree_path $branch
     } else {
         print $"Creating new branch '($branch)' from ($base_ref)"
-        git worktree add -b $branch $worktree_path $base_ref
+        git worktree add --no-track -b $branch $worktree_path $base_ref
     }
 
     print $"Created worktree at ($worktree_path)"

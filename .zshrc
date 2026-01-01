@@ -153,3 +153,6 @@ complete -C /opt/homebrew/bin/aws-sso aws-sso
 
 # Added by Antigravity
 export PATH="/Users/charley/.antigravity/antigravity/bin:$PATH"
+
+# opencode
+export PATH=/Users/charley/.opencode/bin:$PATH

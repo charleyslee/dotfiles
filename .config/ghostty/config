@@ -25,3 +25,4 @@ font-family-bold-italic = JetBrainsMono Nerd Font Mono Bold Italic
 font-size = 12
 
 keybind = super+shift+j=unbind
+keybind = shift+enter=text:\x1b\r
