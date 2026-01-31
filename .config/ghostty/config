@@ -26,3 +26,5 @@ font-size = 12
 
 keybind = super+shift+j=unbind
 keybind = shift+enter=text:\x1b\r
+
+bell-features = system,attention,title

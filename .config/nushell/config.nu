@@ -42,6 +42,7 @@ $env.config.keybindings = ($env.config.keybindings | append {
 ##############################################
 use std/util "path add"
 
+path add "/usr/local/bin"
 path add "~/.local/bin"
 
 # Homebrew
@@ -135,3 +136,4 @@ starship init nu | save -f ($nu.data-dir | path join "vendor/autoload/starship.n
 use direnv.nu
 use mise.nu
 
+$env.OPENCODE_EXPERIMENTAL_PLAN_MODE = 1

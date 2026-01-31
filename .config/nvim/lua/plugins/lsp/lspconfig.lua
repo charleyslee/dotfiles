@@ -415,6 +415,11 @@ return {
 
     vim.lsp.enable("delance", false)
 
+    vim.lsp.config("ty", {
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
+
     vim.lsp.enable("ty")
 
     -- vim.lsp.config("graphql", {
@@ -504,7 +509,7 @@ return {
       -- path_to_config = "./platform/relay.config.json",
     })
 
-    vim.lsp.enable("relay_lsp")
+    vim.lsp.enable("relay_lsp", false)
 
     vim.lsp.config("jdtls", {
       capabilities = capabilities,
