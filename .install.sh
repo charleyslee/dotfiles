@@ -79,7 +79,7 @@ elif [ "$OS" = "Linux" ]; then
       git curl build-essential \
       tmux fish fzf fd-find bat jq tree \
       ripgrep direnv zoxide btop neofetch \
-      git-lfs cmake gnupg
+      git-lfs cmake gnupg libclang-dev
 
     ok "apt packages installed"
 
@@ -95,8 +95,8 @@ elif [ "$OS" = "Linux" ]; then
     # Nushell
     if ! command -v nu &>/dev/null; then
       info "Installing nushell..."
-      local NU_VERSION="0.108.0"
-      local NU_TAR="nu-${NU_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz"
+      NU_VERSION="0.108.0"
+      NU_TAR="nu-${NU_VERSION}-${ARCH}-unknown-linux-gnu.tar.gz"
       curl -fsSL "https://github.com/nushell/nushell/releases/download/${NU_VERSION}/${NU_TAR}" -o "/tmp/${NU_TAR}"
       tar xzf "/tmp/${NU_TAR}" -C /tmp
       sudo cp "/tmp/nu-${NU_VERSION}-${ARCH}-unknown-linux-gnu/nu" /usr/local/bin/nu
@@ -109,7 +109,6 @@ elif [ "$OS" = "Linux" ]; then
     # Zellij
     if ! command -v zellij &>/dev/null; then
       info "Installing zellij..."
-      local ZJ_VERSION
       ZJ_VERSION="$(curl -fsSL https://api.github.com/repos/zellij-org/zellij/releases/latest | jq -r .tag_name)"
       curl -fsSL "https://github.com/zellij-org/zellij/releases/download/${ZJ_VERSION}/zellij-${ARCH}-unknown-linux-musl.tar.gz" -o /tmp/zellij.tar.gz
       tar xzf /tmp/zellij.tar.gz -C /tmp
@@ -123,9 +122,7 @@ elif [ "$OS" = "Linux" ]; then
     # Lazygit
     if ! command -v lazygit &>/dev/null; then
       info "Installing lazygit..."
-      local LG_VERSION
       LG_VERSION="$(curl -fsSL https://api.github.com/repos/jesseduffield/lazygit/releases/latest | jq -r .tag_name | sed 's/^v//')"
-      local LG_ARCH
       [ "$ARCH" = "x86_64" ] && LG_ARCH="x86_64" || LG_ARCH="arm64"
       curl -fsSL "https://github.com/jesseduffield/lazygit/releases/download/v${LG_VERSION}/lazygit_${LG_VERSION}_Linux_${LG_ARCH}.tar.gz" -o /tmp/lazygit.tar.gz
       tar xzf /tmp/lazygit.tar.gz -C /tmp lazygit
@@ -182,7 +179,7 @@ fi
 ########################################
 info "Step 4: Cargo packages"
 
-CARGO_PKGS=(bob-nvim ripgrep tokei tree-sitter-cli kdlfmt nufmt)
+CARGO_PKGS=(bob-nvim ripgrep tokei tree-sitter-cli)
 for pkg in "${CARGO_PKGS[@]}"; do
   if cargo install --list 2>/dev/null | grep -q "^${pkg} "; then
     warn "cargo: $pkg already installed"
