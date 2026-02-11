@@ -45,8 +45,10 @@ use std/util "path add"
 path add "/usr/local/bin"
 path add "~/.local/bin"
 
-# Homebrew
-path add "/opt/homebrew/bin"
+# Homebrew (macOS only)
+if (sys host | get name) == "Darwin" {
+    path add "/opt/homebrew/bin"
+}
 
 # Rust
 $env.CARGO_HOME = $env.HOME | path join ".cargo"
@@ -56,22 +58,21 @@ path add ($env.CARGO_HOME | path join "bin")
 path add "~/.local/share/bob/nvim-bin"
 
 # fnm (node)
-path add ($env.HOME | path join ".local/state/fnm_multishells/82230_1763954763762/bin")
-$env.FNM_MULTISHELL_PATH = "/Users/charley/.local/state/fnm_multishells/82230_1763954763762"
-$env.FNM_VERSION_FILE_STRATEGY = "local"
-$env.FNM_DIR = "/Users/charley/.local/share/fnm"
-$env.FNM_LOGLEVEL = "info"
-$env.FNM_NODE_DIST_MIRROR = "https://nodejs.org/dist"
-$env.FNM_COREPACK_ENABLED = "false"
-$env.FNM_RESOLVE_ENGINES = "true"
-$env.FNM_ARCH = "arm64"
+if (which fnm | is-not-empty) {
+    fnm env --json | from json | load-env
+    path add ($env.FNM_MULTISHELL_PATH | path join "bin")
+}
 
 # Bun
 $env.BUN_INSTALL = $env.HOME | path join ".bun"
 path add ($env.BUN_INSTALL | path join "bin")
 
 # pnpm
-$env.PNPM_HOME = $env.HOME | path join "Library" "pnpm"
+if (sys host | get name) == "Darwin" {
+    $env.PNPM_HOME = ($env.HOME | path join "Library" "pnpm")
+} else {
+    $env.PNPM_HOME = ($env.HOME | path join ".local/share/pnpm")
+}
 path add $env.PNPM_HOME
 
 # OpenCode
