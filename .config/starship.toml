@@ -1,7 +1,7 @@
 # Get editor completions based on the config schema
 "$schema" = 'https://starship.rs/config-schema.json'
 
-format = '$python$username$hostname$directory$aws$git_branch$character'
+format = '$python$username$directory$aws$git_branch$character'
 
 add_newline = false
 
