@@ -218,7 +218,8 @@ export def "wt ls" [] {
 # Remove a worktree
 export def --env "wt rm" [
     branch?: string@wt-complete-branches  # Branch name to remove (default: current worktree)
-    --all                                  # Remove all worktrees except main
+    --all                                 # Remove all worktrees except main
+    --force                                
 ] {
     if $all {
         let main_branch = (wt-get-main-branch)
@@ -274,6 +275,10 @@ export def --env "wt rm" [
     }
 
     print $"Removing worktree for '($target_branch)'..."
-    git worktree remove $worktree.path
+    if $force {
+      git worktree remove $worktree.path --force
+    } else {
+      git worktree remove $worktree.path
+    }
     print "Done"
 }
