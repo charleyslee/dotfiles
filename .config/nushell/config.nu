@@ -70,6 +70,8 @@ path add ($env.HOME | path join ".opencode/bin")
 # Google Cloud CLI
 path add ($env.HOME | path join "google-cloud-sdk/bin")
 
+path add ($env.HOME | path join ".pulumi/bin")
+
 ##############################################
 # Configurations
 ##############################################
@@ -99,6 +101,9 @@ alias ga = git add
 alias gc = git commit
 alias gco = git checkout
 alias gpf = git push --force-with-lease
+
+alias clauded = claude --dangerously-skip-permissions
+alias codexd = codex --yolo
 
 ##############################################
 # Completions
